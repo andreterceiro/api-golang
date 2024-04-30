@@ -1,0 +1,112 @@
+{
+	"info": {
+		"_postman_id": "e9d00084-ee54-474a-863b-67ca15337a64",
+		"name": "Default collection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "10956946",
+		"_collection_link": "https://warped-star-269929.postman.co/workspace/API-GO~19a180a1-fd9a-4c47-be3f-b60c2e85bd4b/collection/10956946-e9d00084-ee54-474a-863b-67ca15337a64?action=share&source=collection_link&creator=10956946"
+	},
+	"item": [
+		{
+			"name": "List products",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{serverAddress}}/products",
+					"host": [
+						"{{serverAddress}}"
+					],
+					"path": [
+						"products"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET a specific product",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{serverAddress}}/product/1",
+					"host": [
+						"{{serverAddress}}"
+					],
+					"path": [
+						"product",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Adding a product",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"Consul fridge\",\n    \"description\": \"Consul fridge frost free CRM39AB\"\n}"
+				},
+				"url": {
+					"raw": "{{serverAddress}}/product",
+					"host": [
+						"{{serverAddress}}"
+					],
+					"path": [
+						"product"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Removing a product",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{serverAddress}}/product/2",
+					"host": [
+						"{{serverAddress}}"
+					],
+					"path": [
+						"product",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Updating a product",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"Stove\",\n    \"description\": \"Stove Brasilar New Sirius Table Inox\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{serverAddress}}/product/1",
+					"host": [
+						"{{serverAddress}}"
+					],
+					"path": [
+						"product",
+						"1"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
