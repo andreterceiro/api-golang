@@ -22,8 +22,13 @@ go build main.go
 
 
 # Demo
-[Vídeo](https://youtu.be/QVEsWWBr-l0)
+[Vídeo 1](https://youtu.be/QVEsWWBr-l0)
 
+After recording the video demo, I made two additional videos, one about testing some things that do not are in the basic flow and the last about inserting/updating a trimmed (of spaces) value in the name of the product and general formatting.
+
+[Video 2](https://youtu.be/P1CCSaFhsw4)
+
+[Video 3](https://youtu.be/oCYcXkwUZ4Y)
 
 # Postman collection to make the test more easy
 
