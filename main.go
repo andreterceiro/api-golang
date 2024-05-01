@@ -2,7 +2,7 @@ package main
 
 import (
     "net/http"
-	"github.com/gin-gonic/gin"
+    "github.com/gin-gonic/gin"
     "strconv"
     "strings"
 )
@@ -38,7 +38,7 @@ func getProducts(c *gin.Context) {
 
 // updating a product
 func updateProduct(c *gin.Context) {
-	id := c.Param("id")
+    id := c.Param("id")
     var newProduct product
 
     if err := c.BindJSON(&newProduct); err != nil {
@@ -47,37 +47,37 @@ func updateProduct(c *gin.Context) {
 
     if strings.Trim(newProduct.Name, " ") == "" {
         c.IndentedJSON(http.StatusUnprocessableEntity, "The name of the product is empty")
-        return        
+        return
     } 
 
-	for index, a := range products {
+    for index, a := range products {
         if a.ID == id {
-			newProduct.ID = id
-			products[index] = newProduct
-			c.IndentedJSON(http.StatusOK, newProduct)
+            newProduct.ID = id
+            products[index] = newProduct
+            c.IndentedJSON(http.StatusOK, newProduct)
             return
         }
-	}
+    }
 
-	c.IndentedJSON(http.StatusNotFound, gin.H{"message": "product not found"})	
+    c.IndentedJSON(http.StatusNotFound, gin.H{"message": "product not found"})    
 }
 
 // addProduct adds a product from a JSON received in the request body.
 func addProduct(c *gin.Context) {
     var newProduct product
-	var newId int
+    var newId int
 
-	newId , _ = strconv.Atoi(products[len(products)-1].ID)
-	newProduct.ID = strconv.Itoa(newId + 1)
-	
-	if err := c.BindJSON(&newProduct); err != nil {
+    newId , _ = strconv.Atoi(products[len(products)-1].ID)
+    newProduct.ID = strconv.Itoa(newId + 1)
+    
+    if err := c.BindJSON(&newProduct); err != nil {
         return
     }
 
     if strings.Trim(newProduct.Name, " ") == "" {
         newProduct.ID = ""
         c.IndentedJSON(http.StatusUnprocessableEntity, "The name of the product is empty")
-        return        
+        return
     } 
 
     // Addding the new product
@@ -98,29 +98,29 @@ func getProductByID(c *gin.Context) {
             c.IndentedJSON(http.StatusOK, a)
             return
         }
-	}
-   c.IndentedJSON(http.StatusNotFound, gin.H{"message": "product not found"})
+    }
+    c.IndentedJSON(http.StatusNotFound, gin.H{"message": "product not found"})
 }
 
 // Here we delete a product by the informed ID
 func deleteProductByID(c *gin.Context) {
     id := c.Param("id")
 
-	var productFound product
-	var newProducts []product
+    var productFound product
+    var newProducts []product
 
-	for _, a := range products {
+    for _, a := range products {
         if a.ID == id {
-			productFound = a
-		} else{
-			newProducts = append(newProducts, a)
-		}
-	}
-	
-	if productFound.ID != "" {
-		products = newProducts
-		c.IndentedJSON(http.StatusOK, productFound)
-	} else {
-		c.IndentedJSON(http.StatusNotFound, gin.H{"message": "product not found"})	
-	}
+            productFound = a
+        } else{
+            newProducts = append(newProducts, a)
+        }
+    }
+
+    if productFound.ID != "" {
+        products = newProducts
+        c.IndentedJSON(http.StatusOK, productFound)
+    } else {
+        c.IndentedJSON(http.StatusNotFound, gin.H{"message": "product not found"})    
+    }
 }
