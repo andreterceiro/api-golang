@@ -45,7 +45,8 @@ func updateProduct(c *gin.Context) {
         return
     }
 
-    if strings.Trim(newProduct.Name, " ") == "" {
+    newProduct.Name = strings.Trim(newProduct.Name, " ")
+    if newProduct.Name == "" {
         c.IndentedJSON(http.StatusUnprocessableEntity, "The name of the product is empty")
         return
     } 
