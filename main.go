@@ -3,7 +3,8 @@ package main
 import (
     "net/http"
 	"github.com/gin-gonic/gin"
-	"strconv"
+    "strconv"
+    "strings"
 )
 
 // Structure of every registry
@@ -67,6 +68,12 @@ func addProduct(c *gin.Context) {
 	if err := c.BindJSON(&newProduct); err != nil {
         return
     }
+
+    if strings.Trim(newProduct.Name, " ") == "" {
+        newProduct.ID = ""
+        c.IndentedJSON(http.StatusUnprocessableEntity, "The name of the product is empty")
+        return        
+    } 
 
     // Addding the new product
     products = append(products, newProduct)
